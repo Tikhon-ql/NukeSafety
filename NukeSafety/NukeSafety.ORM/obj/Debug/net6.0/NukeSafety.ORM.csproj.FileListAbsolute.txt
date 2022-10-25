@@ -1,0 +1,13 @@
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\bin\Debug\net6.0\NukeSafety.ORM.deps.json
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\bin\Debug\net6.0\NukeSafety.ORM.runtimeconfig.json
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\bin\Debug\net6.0\NukeSafety.ORM.dll
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\bin\Debug\net6.0\NukeSafety.ORM.pdb
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.csproj.AssemblyReference.cache
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.GeneratedMSBuildEditorConfig.editorconfig
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.AssemblyInfoInputs.cache
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.csproj.CoreCompileInputs.cache
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.dll
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\refint\NukeSafety.ORM.dll
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.pdb
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\NukeSafety.ORM.genruntimeconfig.cache
+D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety.ORM\obj\Debug\net6.0\ref\NukeSafety.ORM.dll
