@@ -30,8 +30,8 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container w-100 h-100 m-0">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
@@ -43,6 +43,8 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=5f748688-9497-4594-abe1-531ca0e0d401&lang=ru_RU"
+            type="text/javascript"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
