@@ -1,6 +1,26 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
-<div id="map-test" class="map">
+<div style="display:flex">
+    <div id="map-test" style="justify-content:left" class="map">
+    </div>
+    <div id="menu" class="menu w-25" style="justify-content:flex-end">
+        <form>
+            <h2 style="margin:0 auto">Menu</h2>
+            <input type="number" id="blasteYield" class="blasteYield ml-3 mb-3 w-75" value="1000" min="100" max="100000" />
+            <select id="type" class="type ml-3 mb-3">
+                <option>Air</option>
+                <option>Height</option>
+                <option>Cosmic</option>
+                <option>Ground</option>
+                <option>Underground</option>
+                <option>Water</option>
+                <option>Underwater</option>
+            </select>
+            <div type="text" id="latitude" class="latitude ml-3 mb-3" ></div>
+            <div type="text" id="longitude" class="longitude ml-3 mb-3"></div>
+           
+            <button id="buttonDetonate">Detonate</button>
+        </form>
+    </div>
 </div>
