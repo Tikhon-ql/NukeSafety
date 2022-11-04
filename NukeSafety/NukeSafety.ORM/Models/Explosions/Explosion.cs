@@ -14,8 +14,8 @@ namespace NukeSafety.ORM.Models.Explosions
         public int Id { get; set; }
         [Required]
         public virtual Bomb Bomb { get; set; }
-        [Required]
-        public double AreaOfDamage { get; set; }
+        //[Required]
+        //public double AreaOfDamage { get; set; }
         public abstract double GetRadius();
     }
 }

@@ -10,6 +10,7 @@ namespace NukeSafety.ORM.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public TimeSpan HalfLive { get; set; }
+        public string Shortname { get; set; }
+        public string HalfLive { get; set; }
     }
 }

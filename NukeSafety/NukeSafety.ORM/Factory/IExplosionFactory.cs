@@ -10,6 +10,6 @@ namespace NukeSafety.ORM.Factory
 {
     public interface IExplosionFactory
     {
-        Explosion CreateExplosion(Bomb bomb, double areaOfDamage);
+        Explosion CreateExplosion(Bomb bomb);
     }
 }

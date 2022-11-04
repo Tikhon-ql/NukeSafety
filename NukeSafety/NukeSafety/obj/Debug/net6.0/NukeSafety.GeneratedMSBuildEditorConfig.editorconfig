@@ -15,6 +15,10 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Tikhon\Github\NukeSafety\NukeSafety\NukeSafety
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Tikhon/Github/NukeSafety/NukeSafety/NukeSafety/Views/Home/BombInfo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb21iSW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Tikhon/Github/NukeSafety/NukeSafety/NukeSafety/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

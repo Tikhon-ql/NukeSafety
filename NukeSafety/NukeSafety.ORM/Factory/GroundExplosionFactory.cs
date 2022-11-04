@@ -10,9 +10,9 @@ namespace NukeSafety.ORM.Factory
 {
     public class GroundExplosionFactory : IExplosionFactory
     {
-        public Explosion CreateExplosion(Bomb bomb, double areaOfDamage)
+        public Explosion CreateExplosion(Bomb bomb)
         {
-            return new GroundExplosion{Bomb = bomb, AreaOfDamage = areaOfDamage};
+            return new GroundExplosion{Bomb = bomb};
         }
     }
 }

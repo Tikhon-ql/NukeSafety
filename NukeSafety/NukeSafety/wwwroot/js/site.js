@@ -4,6 +4,12 @@ let map;
 let longitude = document.getElementById("longitude");
 let latitude = document.getElementById("latitude");
 let buttonDetonate = document.getElementById("buttonDetonate");
+let buttonSwitch = document.getElementById("switchButton");
+//let setPersonButton = document.getElementById("setPerson");
+let explosionType = document.getElementsByName("type")[0];
+
+/*let availableToSetPersonPosition = false;*/
+let isConstructFormVisible = false;
 //------------------
 var options = {
     enableHighAccuracy: true,
@@ -27,65 +33,89 @@ ymaps.ready(init);
 
 function init() {
 
-    longitude.textContent = coords[0];
-    latitude.textContent = coords[1];
+    //longitude.textContent = coords[0];
+    //latitude.textContent = coords[1];
 
     var myMap = new YandexMap(coords);
 
     console.dir(coords);
-  
+
 
     buttonDetonate.addEventListener('click', function (e) {
         e.preventDefault();
-        //alert("anime");
-
-        //console.dir(map.geoObjects);
         myMap.detonate();
     })
+    buttonSwitch.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (!isConstructFormVisible) {
+            document.getElementById("constructBomb").style.visibility = "visible";
+            document.getElementById("selectBomb").style.visibility = "hidden";
+        }
+        else {
+            document.getElementById("selectBomb").style.visibility = "visible";
+            document.getElementById("constructBomb").style.visibility = "hidden";
+        }
+        isConstructFormVisible = !isConstructFormVisible;
+    })
+    //setPersonButton.addEventListener('click', function (event) {
+    //    if (!availableToSetPersonPosition) {
+    //        availableToSetPersonPosition = true;
+    //        setPersonButton.textContent = "Remove person placemark";
+    //    }
+    //    else {
+    //        availableToSetPersonPosition = false;
+    //        myMap.removePlacemark();
+    //        setPersonButton.textContent = "Set person placemark";
+    //    }
+    //});
 }
 //----------------------------
 
 
-class YandexMap
-{
-    constructor(coords){
+class YandexMap {
+    constructor(coords) {
+
+      
+        this.placemark = new ymaps.Placemark(coords,
+            {
+                hintContent: 'You',
+                iconCaption: 'You'
+            },
+            {
+                iconLayout: 'default#image',
+                iconImageHref: "img/person.png",
+                iconImageSize: [40, 40],
+                iconImageOffset: [-19, -40],
+                draggable: true
+            });
         this.map = new ymaps.Map('map-test', {
             center: coords,
-            zoom: 15
+            zoom: 10
         });
 
-        this.map.events.add('click', function(e){
-            //document.getElementById("longitude").textContent = e.get('coords')[0];
-            //document.getElementById("latitude").textContent = e.get('coords')[1];
-            longitude.textContent = e.get('coords')[0];
-            latitude.textContent = e.get('coords')[1];
-        })
-    }
-    detonate() {
-        //console.dir(map);
-        console.dir(this);
-        var blasteYield = document.forms[0][0].value;
-        var myCircle1 = new ymaps.Circle([
-            [longitude.textContent, latitude.textContent],
+        this.bombPlacemark = new ymaps.Placemark(coords, null, {
+            iconLayout: 'default#image',
+            iconImageHref: 'img/location-mark.png',
+            iconImageSize: [40, 40],
+            iconImageOffset: [-19, -40],
+            draggable: true
+        });
+
+        this.myCircle1 = new ymaps.Circle([
+            this.bombPlacemark.geometry.getCoordinates(),
             blasteYield
-        ], {
-            balloonContent: "Радиус круга - 10 км",
-            hintContent: "Подвинь меня"
-        }, {
+        ], null, {
             draggable: false,
             fillColor: "#DB709377",
             strokeColor: "#990066",
             strokeOpacity: 0.8,
             strokeWidth: 5
         });
-        var myCircle2 = new ymaps.Circle([
+        this.myCircle2 = new ymaps.Circle([
 
-            [longitude.textContent, latitude.textContent],
+            this.bombPlacemark.geometry.getCoordinates(),
             Number(blasteYield) + Number(500)
-        ], {
-            balloonContent: "Радиус круга - 10 км",
-            hintContent: "Подвинь меня"
-        }, {
+        ], null, {
             draggable: false,
             fillColor: "#235789",
             fillOpacity: 0.5,
@@ -93,14 +123,11 @@ class YandexMap
             strokeOpacity: 0.8,
             strokeWidth: 10
         });
-        var myCircle3 = new ymaps.Circle([
+        this.myCircle3 = new ymaps.Circle([
 
-            [longitude.textContent, latitude.textContent],
+            this.bombPlacemark.geometry.getCoordinates(),
             Number(blasteYield) + Number(1500)
-        ], {
-            balloonContent: "Радиус круга - 10 км",
-            hintContent: "Подвинь меня"
-        }, {
+        ], null, {
             draggable: false,
             fillColor: "#8332AC",
             fillOpacity: 0.5,
@@ -108,14 +135,11 @@ class YandexMap
             strokeOpacity: 0.8,
             strokeWidth: 10
         });
-        var myCircle4 = new ymaps.Circle([
+        this.myCircle4 = new ymaps.Circle([
 
-            [longitude.textContent, latitude.textContent],
+            this.bombPlacemark.geometry.getCoordinates(),
             Number(blasteYield) + Number(2500)
-        ], {
-            balloonContent: "Радиус круга - 10 км",
-            hintContent: "Подвинь меня"
-        }, {
+        ], null, {
             draggable: false,
             fillColor: "#BAD1CD",
             fillOpacity: 0.5,
@@ -123,14 +147,11 @@ class YandexMap
             strokeOpacity: 0.8,
             strokeWidth: 10
         });
-        var myCircle5 = new ymaps.Circle([
+        this.myCircle5 = new ymaps.Circle([
 
-            [longitude.textContent, latitude.textContent],
+            this.bombPlacemark.geometry.getCoordinates(),
             Number(blasteYield) + Number(4000)
-        ], {
-            balloonContent: "Радиус круга - 10 км",
-            hintContent: "Подвинь меня"
-        }, {
+        ], null, {
             draggable: false,
             fillColor: "#51E5FF",
             fillOpacity: 0.5,
@@ -138,10 +159,83 @@ class YandexMap
             strokeOpacity: 0.8,
             strokeWidth: 10
         });
-        this.map.geoObjects.add(myCircle1);
-        this.map.geoObjects.add(myCircle2);
-        this.map.geoObjects.add(myCircle3);
-        this.map.geoObjects.add(myCircle4);
-        this.map.geoObjects.add(myCircle5);
+
+
+        this.map.geoObjects.add(this.bombPlacemark);
+        this.map.geoObjects.add(this.placemark);
+
+        this.map.events.add('click', (e) => {
+            //document.getElementById("longitude").textContent = e.get('coords')[0];
+            //document.getElementById("latitude").textContent = e.get('coords')[1];
+            //longitude.textContent = e.get('coords')[0];
+            //latitude.textContent = e.get('coords')[1];
+            //this.setPlacemark(e.get('coords'));
+            //if (availableToSetPersonPosition) {
+            //    this.setPlacemark(e.get('coords'));
+            //}
+            //else
+            //    this.removePlacemark();
+        })
+    }
+    detonate() {
+        //console.dir(map);
+        let radius;
+        let blasteYield;
+
+        if (!isConstructFormVisible) {
+            let bombId = document.getElementById("bombId").value;
+            $.ajax(
+                {
+                    "url": "Home/GetBombRadiuses",
+                    "data": { "bombId": bombId, "type": explosionType.value },
+                    "dataType": "json",
+                    "success": function (data) {
+                        blasteYield = data;
+                        console.log(blasteYield);
+                    }
+                });
+        }
+        else {
+            blasteYield = document.forms[0][0].value;
+            $.post("Home/CreateExplosion", { "blastYeild": blasteYield, "type": explosionType.value });
+        }
+        console.log(blasteYield);
+
+        this.map.geoObjects.remove(this.myCircle1);
+        this.map.geoObjects.remove(this.myCircle2);
+        this.map.geoObjects.remove(this.myCircle3);
+        this.map.geoObjects.remove(this.myCircle4);
+        this.map.geoObjects.remove(this.myCircle5);
+
+        this.myCircle1.geometry.setCoordinates(this.bombPlacemark.geometry.getCoordinates());
+        this.myCircle2.geometry.setCoordinates(this.bombPlacemark.geometry.getCoordinates());
+        this.myCircle3.geometry.setCoordinates(this.bombPlacemark.geometry.getCoordinates());
+        this.myCircle4.geometry.setCoordinates(this.bombPlacemark.geometry.getCoordinates());
+        this.myCircle5.geometry.setCoordinates(this.bombPlacemark.geometry.getCoordinates());
+
+        this.myCircle1.geometry.setRadius(blasteYield);
+        this.myCircle2.geometry.setRadius(Number(blasteYield) + 500);
+        this.myCircle3.geometry.setRadius(Number(blasteYield) + 1500);
+        this.myCircle4.geometry.setRadius(Number(blasteYield) + 2500);
+        this.myCircle5.geometry.setRadius(Number(blasteYield) + 4000);
+
+        this.map.geoObjects.add(this.myCircle1);
+        this.map.geoObjects.add(this.myCircle2);
+        this.map.geoObjects.add(this.myCircle3);
+        this.map.geoObjects.add(this.myCircle4);
+        this.map.geoObjects.add(this.myCircle5);
+    }
+    setPlacemark(coords) {
+        console.log(coords);
+        this.map.geoObjects.remove(this.placemark);
+        this.placemark.geometry.setCoordinates(coords);
+        this.map.geoObjects.add(this.placemark);
+    }
+    removePlacemark() {
+        this.map.geoObjects.remove(this.placemark);
     }
 }
+
+document.getElementById("bombId").addEventListener('change', function (event) {
+    document.getElementById("currentBombId").value = event.target.value;
+});

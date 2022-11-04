@@ -14,10 +14,22 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+    background-color: #A19FB7;
 }
 
 .map{
+    margin-right:1vw;
+    margin-left:1vw;
     width:100vw;
-    height:100vw;
+    height:87vh;
+    border-radius:100px;
+}
+
+.image{
+    object-fit:cover;
+    object-position:50% 50%;
+    width:20vw;
+    height:15vw;
+    border-radius:50px;
 }

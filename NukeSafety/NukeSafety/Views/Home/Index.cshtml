@@ -1,14 +1,16 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using NukeSafety.ORM.Models;
+@model IEnumerable<Bomb>;
 <div style="display:flex">
     <div id="map-test" style="justify-content:left" class="map">
     </div>
     <div id="menu" class="menu w-25" style="justify-content:flex-end">
-        <form>
-            <h2 style="margin:0 auto">Menu</h2>
+        <h2 style="margin:0 auto">Menu</h2>
+        <form id="constructBomb" class="constructBomb" style="visibility: hidden; height:0px;">
             <input type="number" id="blasteYield" class="blasteYield ml-3 mb-3 w-75" value="1000" min="100" max="100000" />
-            <select id="type" class="type ml-3 mb-3">
+         @*   <select id="type" class="type ml-3 mb-3">
                 <option>Air</option>
                 <option>Height</option>
                 <option>Cosmic</option>
@@ -16,11 +18,42 @@
                 <option>Underground</option>
                 <option>Water</option>
                 <option>Underwater</option>
-            </select>
-            <div type="text" id="latitude" class="latitude ml-3 mb-3" ></div>
-            <div type="text" id="longitude" class="longitude ml-3 mb-3"></div>
-           
-            <button id="buttonDetonate">Detonate</button>
+            </select>*@
+            <p><input type="radio" id="airType" checked name="type" value="Air" />Air</p>
+            <p><input type="radio" id="groundType" name="type" value="Ground" /> Ground</p>
         </form>
+        <form method="get" asp-action="BombInfo" id="selectBomb" style="visibility: visible">
+            @{
+                var selectList = new List<SelectListItem>();
+                foreach(var bomb in Model)
+                {
+                    selectList.Add(new SelectListItem { Value = bomb.Id.ToString(), Text = bomb.Name});
+                }
+                selectList[0].Selected = true;
+            }
+            <select id="bombId" asp-items="@selectList">
+            </select><br/>
+          @*  <select id="type" class="type ml-3 mb-3">
+                <option>Air</option>
+                <option>Height</option>
+                <option>Cosmic</option>
+                <option>Ground</option>
+                <option>Underground</option>
+                <option>Water</option>
+                <option>Underwater</option>
+            </select>*@
+            <p><input type="radio" id="airType" name="type" checked value="air" />Air</p>
+            <p><input type="radio" id="groundType" name="type" value="ground"/> Ground</p>
+            <input type="submit" value="Bomb info" />
+            <input id="currentBombId" name="currentBombId" type="text" style="display:none" value="@selectList[0].Value" />           
+        </form>
+
+      @*  <div type="text" id="latitude" class="latitude ml-3 mb-3"></div>
+        <div type="text" id="longitude" class="longitude ml-3 mb-3"></div>*@
+
+        <button id="buttonDetonate">Detonate</button>
+        <button id="switchButton">Switch to bomb constructor</button>
+       @* <button id="setPerson">Set person placemark</button>*@
+        <a asp-action="SaveActivities" asp-controller="Home">How to save</a>
     </div>
 </div>
